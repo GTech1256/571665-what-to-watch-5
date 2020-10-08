@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Main = (props) => {
+const MainScreen = (props) => {
   const {
     filmPromo: {
       name,
@@ -312,7 +312,7 @@ const Main = (props) => {
   );
 };
 
-Main.propTypes = {
+MainScreen.propTypes = {
   filmPromo: PropTypes.exact({
     name: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
@@ -320,4 +320,4 @@ Main.propTypes = {
   })
 };
 
-export default Main;
+export default MainScreen;
