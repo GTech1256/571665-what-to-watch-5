@@ -7,42 +7,68 @@ import MyListScreen from "../my-list-screen/my-list-screen";
 import FilmScreen from "../film-screen/film-screen";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import PlayerScreen from "../player-screen/player-screen";
+import {filmType} from "../../types";
 
-const App = (props) => {
-  const {filmPromo} = props;
-
+const App = ({films}) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact>
-          <MainScreen filmPromo={filmPromo} />
-        </Route>
+        <Route
+          path="/"
+          exact
+          render={({history}) => {
+            const filmPromo = films[0];
+
+            return (
+              <MainScreen
+                filmPromo={filmPromo}
+                films={films}
+                onPlayBtnClick={() => history.push(`/player/${filmPromo.id}`)}
+              />
+            );
+          }}
+        />
         <Route path="/login" exact>
           <SignInScreen />
         </Route>
         <Route path="/mylist" exact>
-          <MyListScreen />
+          <MyListScreen films={films.filter(({isFavorite}) => !!isFavorite)} />
         </Route>
-        <Route path="/films/:id" exact>
-          <FilmScreen />
-        </Route>
-        <Route path="/films/:id/review" exact>
-          <AddReviewScreen />
-        </Route>
-        <Route path="/player/:id" exact>
-          <PlayerScreen />
-        </Route>
+        <Route
+          path="/films/:id"
+          exact
+          render={({match}) => (
+            <FilmScreen
+              films={films}
+              filmId={match.params.id}
+            />
+          )}
+        />
+        <Route
+          path="/films/:id/review"
+          exact
+          render={({match}) => (
+            <AddReviewScreen
+              filmId={match.params.id}
+            />
+          )}
+        />
+        <Route
+          path="/player/:id"
+          exact
+          render={({history}) => (
+            <PlayerScreen
+              onExitClick={() => history.push(`/`)}
+            />
+          )}
+        />
       </Switch>
     </BrowserRouter>
   );
 };
 
 App.propTypes = {
-  filmPromo: PropTypes.exact({
-    name: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired
-  })
+  films: PropTypes.arrayOf(PropTypes.shape(filmType).isRequired).isRequired
 };
 
 export default App;
