@@ -1,10 +1,13 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const PlayerScreen = () => (
+const PlayerScreen = ({onExitClick}) => (
   <div className="player">
     <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
 
-    <button type="button" className="player__exit">Exit</button>
+    <button type="button" className="player__exit" onClick={onExitClick}>
+      Exit
+    </button>
 
     <div className="player__controls">
       <div className="player__controls-row">
@@ -34,5 +37,13 @@ const PlayerScreen = () => (
     </div>
   </div>
 );
+
+PlayerScreen.propTypes = {
+  onExitClick: PropTypes.func
+};
+
+PlayerScreen.defaultProps = {
+  onExitClick: () => {}
+};
 
 export default PlayerScreen;
