@@ -43,7 +43,8 @@ const getFilmLevel = (filmRating) => {
 
 const FilmScreen = ({
   films,
-  filmId
+  filmId,
+  onPlayBtnClick
 }) => {
   const film = getFilmById(filmId);
 
@@ -98,7 +99,11 @@ const FilmScreen = ({
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button
+                  className="btn btn--play movie-card__button"
+                  type="button"
+                  onClick={onPlayBtnClick}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -110,7 +115,12 @@ const FilmScreen = ({
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link
+                  className="btn movie-card__button"
+                  to={`/films/${filmId}/review`}
+                >
+                  Add review
+                </Link>
               </div>
             </div>
           </div>
@@ -184,7 +194,12 @@ const FilmScreen = ({
 
 FilmScreen.propTypes = {
   filmId: PropTypes.string.isRequired,
-  films: PropTypes.arrayOf(PropTypes.exact(filmType).isRequired).isRequired
+  films: PropTypes.arrayOf(PropTypes.exact(filmType).isRequired).isRequired,
+  onPlayBtnClick: PropTypes.func
+};
+
+FilmScreen.defaultProps = {
+  onPlayBtnClick: () => {}
 };
 
 export default FilmScreen;
