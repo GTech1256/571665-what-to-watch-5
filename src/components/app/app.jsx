@@ -37,10 +37,11 @@ const App = ({films}) => {
         <Route
           path="/films/:id"
           exact
-          render={({match}) => (
+          render={({history, match}) => (
             <FilmScreen
               films={films}
               filmId={match.params.id}
+              onPlayBtnClick={() => history.push(`/player/${match.params.id}`)}
             />
           )}
         />

@@ -2,40 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card";
 import {filmType} from "../../types";
+import withVideoPreview from "../../hocs/with-video-preview/with-video-preview";
 
-class FilmsList extends React.PureComponent {
-  constructor(props) {
-    super(props);
+const FilmCardWrapper = withVideoPreview(FilmCard);
 
-    this.state = {
-      activeFilmId: null
-    };
-
-    this.handleFilmHover = this.handleFilmHover.bind(this);
-  }
-
-  render() {
-    const {
-      films
-    } = this.props;
-
-    return (
-      <div className="catalog__movies-list">
-        {films.map((film) => (<FilmCard
-          key={film.id}
-          film={film}
-          onFilmHover={this.handleFilmHover}
-        />))}
-      </div>
-    );
-  }
-
-  handleFilmHover({id}) {
-    this.setState({
-      activeFilmId: id
-    });
-  }
-}
+const FilmsList = ({
+  films
+}) => (
+  <div className="catalog__movies-list">
+    {films.map((film) => (
+      <FilmCardWrapper
+        key={film.id}
+        film={film}
+      />
+    ))}
+  </div>
+);
 
 FilmsList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.exact(filmType).isRequired).isRequired

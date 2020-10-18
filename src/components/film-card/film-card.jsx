@@ -5,22 +5,18 @@ import {filmType} from "../../types";
 
 const FilmCard = ({
   film,
-  onFilmHover
+  renderVideoPreview
 }) => {
   const {
     id,
     name,
     posterImage,
+    previewVideoLink,
   } = film;
 
   return (
-    <article
-      className="small-movie-card catalog__movies-card"
-      onMouseOver={() => onFilmHover(film)}
-    >
-      <div className="small-movie-card__image">
-        <img src={posterImage} alt={name} width="280" height="175" />
-      </div>
+    <article className="small-movie-card catalog__movies-card">
+      {renderVideoPreview(previewVideoLink, posterImage)}
       <h3 className="small-movie-card__title">
         <Link className="small-movie-card__link" to={`/films/${id}`}>
           {name}
@@ -32,7 +28,7 @@ const FilmCard = ({
 
 FilmCard.propTypes = {
   film: PropTypes.exact(filmType).isRequired,
-  onFilmHover: PropTypes.func
+  renderVideoPreview: PropTypes.func.isRequired
 };
 
 export default FilmCard;
