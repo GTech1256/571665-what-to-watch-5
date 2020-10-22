@@ -47,7 +47,7 @@ const getFilmLevel = (filmRating) => {
 };
 
 const FilmScreen = ({
-  films,
+  films: allFilms,
   filmId,
   onPlayBtnClick
 }) => {
@@ -72,6 +72,8 @@ const FilmScreen = ({
     runTime,
     reviews
   } = getFilmById(filmId);
+
+  const films = allFilms.filter((similarFilm) => similarFilm.genre === genre && similarFilm.id !== id);
 
   return (
     <React.Fragment>
@@ -225,7 +227,7 @@ const FilmScreen = ({
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <FilmsList films={films.filter((similarFilm) => similarFilm.genre === genre && similarFilm.id !== id)} limit={MAX_FILMS_LIST_COUNT} />
+          <FilmsList films={films} limit={MAX_FILMS_LIST_COUNT} />
         </section>
 
         <footer className="page-footer">

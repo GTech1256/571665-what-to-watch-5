@@ -21,7 +21,7 @@ const FilmsList = ({
     <div className="catalog__movies-list">
       {localFilms.map((film) => <FilmCardWrapper
         film={film}
-        key={film.name}
+        key={film.id}
       />)
       }
     </div>

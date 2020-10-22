@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-import MainScreen from "../main-screen/main-screen";
+import MainScreen from "../main-screen/main-screen.connect";
 import SignInScreen from "../sign-in-screen/sign-in-screen";
 import MyListScreen from "../my-list-screen/my-list-screen";
 import FilmScreen from "../film-screen/film-screen";

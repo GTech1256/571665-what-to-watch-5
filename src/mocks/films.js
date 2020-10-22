@@ -1,7 +1,8 @@
 import {getGenresByFilms} from "../bl/film";
 import reviews from "./reviews";
+import {extend} from "../utils/extend";
 
-export const films = [
+const filmsMock = [
   {
     id: 1,
     name: `The Grand Budapest Hotel`,
@@ -56,5 +57,18 @@ export const films = [
     reviews: reviews.slice(2)
   },
 ];
+
+export const films = [
+  ...filmsMock,
+  ...filmsMock,
+  ...filmsMock,
+  ...filmsMock,
+  ...filmsMock,
+  ...filmsMock,
+  ...filmsMock,
+  ...filmsMock,
+  ...filmsMock,
+  ...filmsMock,
+].map((film, index) => extend(film, {id: index}));
 
 export const genres = getGenresByFilms(films);
