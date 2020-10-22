@@ -1,9 +1,14 @@
-import React from "react";
+import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link, Redirect} from "react-router-dom";
-import {filmType} from "../../types";
 import FilmsList from "../films-list/films-list";
+import Tabs from "../tabs/tabs";
+import Tab from "../tab/tab";
+import {filmType} from "../../types";
 import {getFilmById} from "../../utils/getFilmById";
+
+const MAX_STARRING_OVERVIEW_COUNT = 4;
+const MAX_FILMS_LIST_COUNT = 4;
 
 /**
  * от 0 до 3 — Bad.
@@ -53,6 +58,7 @@ const FilmScreen = ({
   }
 
   const {
+    id,
     name,
     posterImage,
     previewImage,
@@ -61,7 +67,10 @@ const FilmScreen = ({
     rating,
     scoresCount,
     director,
-    description
+    starring,
+    description,
+    runTime,
+    reviews
   } = getFilmById(filmId);
 
   return (
@@ -132,37 +141,82 @@ const FilmScreen = ({
               <img src={posterImage} alt={`${name} poster`} width="218" height="327"/>
             </div>
 
-            <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
+            <Tabs>
+              <Tab title="Overview">
+                <div className="movie-rating">
+                  <div className="movie-rating__score">{rating}</div>
+                  <p className="movie-rating__meta">
+                    <span className="movie-rating__level">{getFilmLevel(rating)}</span>
+                    <span className="movie-rating__count">{scoresCount} ratings</span>
+                  </p>
+                </div>
 
-              <div className="movie-rating">
-                <div className="movie-rating__score">{rating}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{getFilmLevel(rating)}</span>
-                  <span className="movie-rating__count">{scoresCount} ratings</span>
-                </p>
-              </div>
+                <div className="movie-card__text">
+                  <p>{description}</p>
 
-              <div className="movie-card__text">
-                <p>{description}</p>
+                  <p className="movie-card__director"><strong>Director: {director}</strong></p>
 
-                <p className="movie-card__director"><strong>{director}</strong></p>
+                  <p className="movie-card__starring"><strong>
+                    Starring: {starring.slice(0, MAX_STARRING_OVERVIEW_COUNT).join(`, `)}{starring.length > MAX_STARRING_OVERVIEW_COUNT ? ` and other` : ``}
+                  </strong></p>
+                </div>
+              </Tab>
+              <Tab title="Details">
+                <div className="movie-card__text movie-card__row">
+                  <div className="movie-card__text-col">
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Director</strong>
+                      <span className="movie-card__details-value">{director}</span>
+                    </p>
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Starring</strong>
+                      <span className="movie-card__details-value">
+                        {starring.map((star, index, arr) => index !== arr.length - 1 ?
+                          (<Fragment key={star}>{star}, <br /></Fragment>) :
+                          star
+                        )}
+                      </span>
+                    </p>
+                  </div>
 
-                <p className="movie-card__starring"><strong>{}</strong></p>
-              </div>
-            </div>
+                  <div className="movie-card__text-col">
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Run Time</strong>
+                      <span className="movie-card__details-value">{Math.floor(runTime / 60)}h {runTime % 60}m</span>
+                    </p>
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Genre</strong>
+                      <span className="movie-card__details-value">{genre}</span>
+                    </p>
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Released</strong>
+                      <span className="movie-card__details-value">{released}</span>
+                    </p>
+                  </div>
+                </div>
+              </Tab>
+              <Tab title="Reviews">
+                <div className="movie-card__reviews movie-card__row">
+                  <div className="movie-card__reviews-col">
+                    {reviews.map((review) => (
+                      <div key={review.id} className="review">
+                        <blockquote className="review__quote">
+                          <p className="review__text">{review.comment}</p>
+
+                          <footer className="review__details">
+                            <cite className="review__author">{review.user.name}</cite>
+                            {/* TODO: Поправить дату */}
+                            <time className="review__date" dateTime={review.date}>{review.date}</time>
+                          </footer>
+                        </blockquote>
+
+                        <div className="review__rating">{review.rating}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Tab>
+            </Tabs>
           </div>
         </div>
       </section>
@@ -171,7 +225,7 @@ const FilmScreen = ({
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <FilmsList films={films} />
+          <FilmsList films={films.filter((similarFilm) => similarFilm.genre === genre && similarFilm.id !== id)} limit={MAX_FILMS_LIST_COUNT} />
         </section>
 
         <footer className="page-footer">

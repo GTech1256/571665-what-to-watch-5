@@ -1,6 +1,7 @@
+import {getGenresByFilms} from "../bl/film";
 import reviews from "./reviews";
 
-export default [
+export const films = [
   {
     id: 1,
     name: `The Grand Budapest Hotel`,
@@ -14,7 +15,20 @@ export default [
     rating: 8.9,
     scoresCount: 240,
     director: `Wes Andreson`,
-    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
+    starring: [
+      `Bill Murray`,
+      `Edward Norton`,
+      `Jude Law`,
+      `Willem Dafoe`,
+      `Saoirse Ronan`,
+      `Tony Revoloru`,
+      `Tilda Swinton`,
+      `Tom Wilkinson`,
+      `Owen Wilkinson`,
+      `Adrien Brody`,
+      `Ralph Fiennes`,
+      `Jeff Goldblum`
+    ],
     runTime: 99,
     genre: `Comedy`,
     released: 2014,
@@ -42,3 +56,5 @@ export default [
     reviews: reviews.slice(2)
   },
 ];
+
+export const genres = getGenresByFilms(films);

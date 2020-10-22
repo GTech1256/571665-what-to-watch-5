@@ -7,20 +7,30 @@ import withVideoPreview from "../../hocs/with-video-preview/with-video-preview";
 const FilmCardWrapper = withVideoPreview(FilmCard);
 
 const FilmsList = ({
-  films
-}) => (
-  <div className="catalog__movies-list">
-    {films.map((film) => (
-      <FilmCardWrapper
-        key={film.id}
+  films,
+  limit
+}) => {
+  const localFilms = films.slice(
+      0,
+      typeof limit === `number` ?
+        limit :
+        films.length
+  );
+
+  return (
+    <div className="catalog__movies-list">
+      {localFilms.map((film) => <FilmCardWrapper
         film={film}
-      />
-    ))}
-  </div>
-);
+        key={film.name}
+      />)
+      }
+    </div>
+  );
+};
 
 FilmsList.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.exact(filmType).isRequired).isRequired
+  films: PropTypes.arrayOf(PropTypes.exact(filmType).isRequired).isRequired,
+  limit: PropTypes.number
 };
 
 export default FilmsList;
