@@ -1,7 +1,10 @@
 import React, {PureComponent} from 'react';
-import VideoPlayer from "../../components/video-player/video-player";
+import Player from "../../components/video-player/video-player";
+import withVideo from "../with-video/with-video";
 
 const TIMEOUT_DELAY = 1000;
+
+const VideoPlayer = withVideo(Player);
 
 const withVideoPreview = (Component) => {
   class WithVideoPreview extends PureComponent {

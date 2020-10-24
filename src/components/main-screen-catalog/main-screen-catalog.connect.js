@@ -1,9 +1,10 @@
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
-import MainScreen from "./main-screen";
+import MainScreen from "./main-screen.state";
 
 export default connect(
-    ({genre, genres}) => ({
+    ({films, genre, genres}) => ({
+      films,
       activeGenre: genre,
       genres
     }),

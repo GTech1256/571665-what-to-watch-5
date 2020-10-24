@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import PropTypes from "prop-types";
 
 export const ShowMoreBtn = ({
@@ -19,4 +19,4 @@ ShowMoreBtn.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-export default ShowMoreBtn;
+export default memo(ShowMoreBtn);
