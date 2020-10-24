@@ -16,7 +16,9 @@ const FilmCard = ({
 
   return (
     <article className="small-movie-card catalog__movies-card">
-      {renderVideoPreview(previewVideoLink, posterImage)}
+      <Link to={`/films/${id}`}>
+        {renderVideoPreview(previewVideoLink, posterImage)}
+      </Link>
       <h3 className="small-movie-card__title">
         <Link className="small-movie-card__link" to={`/films/${id}`}>
           {name}

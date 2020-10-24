@@ -6,6 +6,7 @@ import Tabs from "../tabs/tabs";
 import Tab from "../tab/tab";
 import {filmType} from "../../types";
 import {getFilmById} from "../../utils/getFilmById";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
 
 const MAX_STARRING_OVERVIEW_COUNT = 4;
 const MAX_FILMS_LIST_COUNT = 4;
@@ -24,6 +25,8 @@ const FilmRatingData = {
   8: `Very good`,
   10: `Awesome`
 };
+
+const TabsWrapped = withActiveItem(Tabs);
 
 const filmRatingKeys = Object.keys(FilmRatingData);
 const filmLevelMaxCountOfRating = filmRatingKeys[filmRatingKeys.length - 1];
@@ -143,7 +146,7 @@ const FilmScreen = ({
               <img src={posterImage} alt={`${name} poster`} width="218" height="327"/>
             </div>
 
-            <Tabs>
+            <TabsWrapped>
               <Tab title="Overview">
                 <div className="movie-rating">
                   <div className="movie-rating__score">{rating}</div>
@@ -218,7 +221,7 @@ const FilmScreen = ({
                   </div>
                 </div>
               </Tab>
-            </Tabs>
+            </TabsWrapped>
           </div>
         </div>
       </section>
