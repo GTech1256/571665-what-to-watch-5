@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const AudioPlayer = ({
+const FilmCardVideo = ({
   children,
   onMouseEnter,
   onMouseLeave,
@@ -15,10 +15,10 @@ const AudioPlayer = ({
   </div>
 );
 
-AudioPlayer.propTypes = {
+FilmCardVideo.propTypes = {
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
   children: PropTypes.element.isRequired
 };
 
-export default AudioPlayer;
+export default FilmCardVideo;

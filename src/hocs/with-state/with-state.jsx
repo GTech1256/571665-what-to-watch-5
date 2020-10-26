@@ -16,7 +16,7 @@ export const withState = (initialState, mapHandlersToProps) => {
         return (
           <Component
             {...this.props}
-            {...mapHandlersToProps.call(null, this.setState, this.props)}
+            {...mapHandlersToProps.call(null, this.setState, this.props, this.state)}
             state={this.state}
           />
         );

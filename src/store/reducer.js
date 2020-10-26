@@ -6,6 +6,7 @@ import {getFilmsByGenre} from "../bl/film";
 
 const initialState = {
   promoFilm: films[0],
+  allFilms: films,
   films,
   genre: FILM_ALL_GENRES,
   genres
