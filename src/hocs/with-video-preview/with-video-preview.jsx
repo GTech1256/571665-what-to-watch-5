@@ -1,10 +1,11 @@
 import React, {PureComponent} from 'react';
-import Player from "../../components/video-player/video-player";
+import Player from "../../components/film-card-video/film-card-video";
 import withVideo from "../with-video/with-video";
 
 const TIMEOUT_DELAY = 1000;
 
 const VideoPlayer = withVideo(Player);
+let timeout = null;
 
 const withVideoPreview = (Component) => {
   class WithVideoPreview extends PureComponent {
@@ -12,7 +13,6 @@ const withVideoPreview = (Component) => {
       super(props);
 
       this.state = {
-        timeout: null,
         isPlaying: false,
       };
 
@@ -55,17 +55,15 @@ const withVideoPreview = (Component) => {
     }
 
     clearTimeout() {
-      if (this.state.timeout) {
-        clearTimeout(this.state.timeout);
+      if (timeout) {
+        clearTimeout(timeout);
       }
     }
 
     handleMouseEnter() {
       this.clearTimeout();
 
-      const timeout = setTimeout(this.startVideo, TIMEOUT_DELAY);
-
-      this.setState({timeout});
+      timeout = setTimeout(this.startVideo, TIMEOUT_DELAY);
     }
 
     handleMouseLeave() {

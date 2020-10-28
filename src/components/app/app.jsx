@@ -6,7 +6,7 @@ import SignInScreen from "../sign-in-screen/sign-in-screen";
 import MyListScreen from "../my-list-screen/my-list-screen.connect";
 import FilmScreen from "../film-screen/film-screen.connect";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
-import PlayerScreen from "../player-screen/player-screen";
+import PlayerScreen from "../player-screen/player-screen.connect";
 import {filmType} from "../../types";
 
 const App = ({promoFilm}) => (
@@ -52,8 +52,9 @@ const App = ({promoFilm}) => (
       <Route
         path="/player/:id"
         exact
-        render={({history}) => (
+        render={({history, match}) => (
           <PlayerScreen
+            filmId={match.params.id}
             onExitClick={() => history.push(`/`)}
           />
         )}
