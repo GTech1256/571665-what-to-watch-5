@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {filmType} from "../../types";
 import MainScreenCatalog from "../main-screen-catalog/main-screen-catalog.connect";
+import UserBlock from "../user-block/user-block.connect";
+import {filmType} from "../../types";
+import {MAIN_SCREEN_ROUTE_PATH} from "./route";
 
 const MainScreen = ({
   filmPromo: {
@@ -24,18 +26,14 @@ const MainScreen = ({
 
       <header className="page-header movie-card__head">
         <div className="logo">
-          <Link className="logo__link" to="/">
+          <Link className="logo__link" to={MAIN_SCREEN_ROUTE_PATH}>
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
           </Link>
         </div>
 
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-        </div>
+        <UserBlock />
       </header>
 
       <div className="movie-card__wrap">
@@ -83,7 +81,7 @@ const MainScreen = ({
 
       <footer className="page-footer">
         <div className="logo">
-          <Link className="logo__link logo__link--light" to="/">
+          <Link className="logo__link logo__link--light" to={MAIN_SCREEN_ROUTE_PATH}>
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>

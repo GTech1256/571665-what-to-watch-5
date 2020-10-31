@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import UserBlock from "../user-block/user-block.connect";
 import ReviewForm from "../review-form/review-form.state";
 import {filmType} from "../../types";
 import {getFilmScreenFullPath} from "../film-screen/route";
+import {MAIN_SCREEN_ROUTE_PATH} from "../main-screen/route";
 
 const AddReviewScreen = ({film}) => {
   const {id, poster, name} = film;
@@ -19,7 +21,7 @@ const AddReviewScreen = ({film}) => {
 
         <header className="page-header">
           <div className="logo">
-            <Link className="logo__link" to="/">
+            <Link className="logo__link" to={MAIN_SCREEN_ROUTE_PATH}>
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -37,11 +39,7 @@ const AddReviewScreen = ({film}) => {
             </ul>
           </nav>
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-            </div>
-          </div>
+          <UserBlock />
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">

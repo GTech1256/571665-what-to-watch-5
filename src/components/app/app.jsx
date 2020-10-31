@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Router as BrowserRouter, Switch, Route} from "react-router-dom";
 import MainScreen from "../main-screen/main-screen";
 import {MAIN_SCREEN_ROUTE_PATH} from "../main-screen/route";
-import SignInScreen from "../sign-in-screen/sign-in-screen";
+import SignInScreen from "../sign-in-screen/sign-in-screen.connect";
 import {SIGN_IN_SCREEN_ROUTE_PATH} from "../sign-in-screen/route";
 import MyListScreen from "../my-list-screen/my-list-screen.connect";
 import {MY_LIST_SCREEN_ROUTE_PATH} from "../my-list-screen/route";
@@ -14,9 +14,10 @@ import {ADD_REVIEW_SCREEN_ROUTE_PATH} from "../add-review-screen/route";
 import PlayerScreen from "../player-screen/player-screen.connect";
 import {getPlayerScreenFullPath, PLAYER_SCREEN_ROUTE_PATH} from "../player-screen/route";
 import {filmType} from "../../types";
+import browserHistory from "../../browser-history";
 
 const App = ({promoFilm}) => (
-  <BrowserRouter>
+  <BrowserRouter history={browserHistory}>
     <Switch>
       <Route
         path={MAIN_SCREEN_ROUTE_PATH}
