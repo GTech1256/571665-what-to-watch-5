@@ -1,12 +1,14 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import UserBlock from "../user-block/user-block.connect";
 import FilmsList from "../films-list/films-list";
 import Tabs from "../tabs/tabs";
 import Tab from "../tab/tab";
 import {filmType, reviewType} from "../../types";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import {getFilmReviewScreenFullPath} from "../add-review-screen/route";
+import {MAIN_SCREEN_ROUTE_PATH} from "../main-screen/route";
 
 const MAX_STARRING_OVERVIEW_COUNT = 4;
 const MAX_FILMS_LIST_COUNT = 4;
@@ -82,18 +84,14 @@ const FilmScreen = ({
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <Link className="logo__link" to="/">
+              <Link className="logo__link" to={MAIN_SCREEN_ROUTE_PATH}>
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
               </Link>
             </div>
 
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </div>
+            <UserBlock />
           </header>
 
           <div className="movie-card__wrap">
@@ -227,7 +225,7 @@ const FilmScreen = ({
 
         <footer className="page-footer">
           <div className="logo">
-            <Link className="logo__link logo__link--light" to="/">
+            <Link className="logo__link logo__link--light" to={MAIN_SCREEN_ROUTE_PATH}>
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>

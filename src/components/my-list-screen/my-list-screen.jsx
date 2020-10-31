@@ -1,14 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import UserBlock from "../user-block/user-block";
 import FileList from "../films-list/films-list";
 import {filmType} from "../../types";
+import {MAIN_SCREEN_ROUTE_PATH} from "../main-screen/route";
 
 const MyListScreen = ({films}) => (
   <div className="user-page">
     <header className="page-header user-page__head">
       <div className="logo">
-        <Link className="logo__link" to="/">
+        <Link className="logo__link" to={MAIN_SCREEN_ROUTE_PATH}>
           <span className="logo__letter logo__letter--1">W</span>
           <span className="logo__letter logo__letter--2">T</span>
           <span className="logo__letter logo__letter--3">W</span>
@@ -17,11 +19,7 @@ const MyListScreen = ({films}) => (
 
       <h1 className="page-title user-page__title">My list</h1>
 
-      <div className="user-block">
-        <div className="user-block__avatar">
-          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-        </div>
-      </div>
+      <UserBlock />
     </header>
 
     <section className="catalog">
@@ -32,7 +30,7 @@ const MyListScreen = ({films}) => (
 
     <footer className="page-footer">
       <div className="logo">
-        <Link className="logo__link logo__link--light" to="/">
+        <Link className="logo__link logo__link--light" to={MAIN_SCREEN_ROUTE_PATH}>
           <span className="logo__letter logo__letter--1">W</span>
           <span className="logo__letter logo__letter--2">T</span>
           <span className="logo__letter logo__letter--3">W</span>

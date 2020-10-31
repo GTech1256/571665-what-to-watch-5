@@ -6,15 +6,17 @@ import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import App from "./components/app/app.connect";
 import rootReducer from "./store/reducers/root-reducer";
-import {createAPI} from "./services/api";
+import {redirect} from "./store/middlewares/redirect";
 import {fetchFilmsList, fetchPromoFilm} from "./store/api-actions";
+import {createAPI} from "./services/api";
 
 const api = createAPI();
 
 const store = createStore(
     rootReducer,
     composeWithDevTools(
-        applyMiddleware(thunk.withExtraArgument(api))
+        applyMiddleware(thunk.withExtraArgument(api)),
+        applyMiddleware(redirect)
     )
 );
 

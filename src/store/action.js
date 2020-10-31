@@ -3,7 +3,8 @@ export const ActionType = {
   SET_GENRES: `SET_GENRES`,
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO_FILMS: `LOAD_PROMO_FILMS`,
-  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`
+  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`
 };
 
 export const toggleGenreFilter = (genre) => ({
@@ -26,3 +27,12 @@ export const loadFilms = (films) => ({
   payload: films
 });
 
+export const requireAuthorization = (status) => ({
+  type: ActionType.REQUIRED_AUTHORIZATION,
+  payload: status,
+});
+
+export const redirectToRoute = (url) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: url,
+});
