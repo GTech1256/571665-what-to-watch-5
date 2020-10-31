@@ -1,14 +1,22 @@
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {createSelector} from "reselect";
+import {getFilmsByGenre} from "../../bl/film";
+import {toggleGenreFilter} from "../../store/action";
 import MainScreen from "./main-screen.state";
 
+const getFilmsSelector = createSelector(
+    ({DATA}) => DATA.films,
+    ({ADJUSTMENT}) => ADJUSTMENT.genre,
+    getFilmsByGenre
+);
+
 export default connect(
-    ({films, genre, genres}) => ({
-      films,
-      activeGenre: genre,
-      genres
+    ({DATA, ADJUSTMENT}) => ({
+      films: getFilmsSelector({DATA, ADJUSTMENT}),
+      activeGenre: ADJUSTMENT.genre,
+      genres: DATA.genres
     }),
     (dispatch) => ({
-      onGenreClick: (genre) => dispatch(ActionCreator.toggleGenreFilter(genre)),
+      onGenreClick: (genre) => dispatch(toggleGenreFilter(genre)),
     })
 )(MainScreen);

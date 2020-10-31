@@ -1,17 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Link, Redirect} from "react-router-dom";
-import {getFilmById} from "../../utils/getFilmById";
+import {Link} from "react-router-dom";
 import ReviewForm from "../review-form/review-form.state";
+import {filmType} from "../../types";
+import {getFilmScreenFullPath} from "../film-screen/route";
 
-const AddReviewScreen = ({filmId}) => {
-  const film = getFilmById(filmId);
-
-  if (film === undefined) {
-    return <Redirect to="/"/>;
-  }
-
-  const {poster, name} = film;
+const AddReviewScreen = ({film}) => {
+  const {id, poster, name} = film;
 
   return (
     <section className="movie-card movie-card--full">
@@ -34,7 +29,7 @@ const AddReviewScreen = ({filmId}) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link className="breadcrumbs__link" to={`/films/${filmId}`}>{name}</Link>
+                <Link className="breadcrumbs__link" to={getFilmScreenFullPath(id)}>{name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -61,7 +56,8 @@ const AddReviewScreen = ({filmId}) => {
 };
 
 AddReviewScreen.propTypes = {
-  filmId: PropTypes.string.isRequired
+  filmId: PropTypes.string.isRequired,
+  film: PropTypes.exact(filmType).isRequired,
 };
 
 export default AddReviewScreen;
