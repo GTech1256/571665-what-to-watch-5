@@ -29,5 +29,4 @@ export const filmType = {
   genre: PropTypes.string.isRequired,
   released: PropTypes.number.isRequired,
   isFavorite: PropTypes.bool.isRequired,
-  reviews: PropTypes.arrayOf(PropTypes.exact(reviewType)).isRequired
 };

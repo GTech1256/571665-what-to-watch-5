@@ -1,12 +1,12 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import FilmsList from "../films-list/films-list";
 import Tabs from "../tabs/tabs";
 import Tab from "../tab/tab";
-import {filmType} from "../../types";
-import {getFilmById} from "../../utils/getFilmById";
+import {filmType, reviewType} from "../../types";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import {getFilmReviewScreenFullPath} from "../add-review-screen/route";
 
 const MAX_STARRING_OVERVIEW_COUNT = 4;
 const MAX_FILMS_LIST_COUNT = 4;
@@ -50,16 +50,11 @@ const getFilmLevel = (filmRating) => {
 };
 
 const FilmScreen = ({
-  films: allFilms,
-  filmId,
+  film,
+  similarFilms,
+  filmReviews,
   onPlayBtnClick
 }) => {
-  const film = getFilmById(filmId);
-
-  if (film === undefined) {
-    return <Redirect to="/"/>;
-  }
-
   const {
     id,
     name,
@@ -72,11 +67,8 @@ const FilmScreen = ({
     director,
     starring,
     description,
-    runTime,
-    reviews
-  } = getFilmById(filmId);
-
-  const films = allFilms.filter((similarFilm) => similarFilm.genre === genre && similarFilm.id !== id);
+    runTime
+  } = film;
 
   return (
     <React.Fragment>
@@ -131,7 +123,7 @@ const FilmScreen = ({
                 </button>
                 <Link
                   className="btn movie-card__button"
-                  to={`/films/${filmId}/review`}
+                  to={getFilmReviewScreenFullPath(id)}
                 >
                   Add review
                 </Link>
@@ -203,7 +195,7 @@ const FilmScreen = ({
               <Tab title="Reviews">
                 <div className="movie-card__reviews movie-card__row">
                   <div className="movie-card__reviews-col">
-                    {reviews.map((review) => (
+                    {filmReviews.map((review) => (
                       <div key={review.id} className="review">
                         <blockquote className="review__quote">
                           <p className="review__text">{review.comment}</p>
@@ -230,7 +222,7 @@ const FilmScreen = ({
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <FilmsList films={films} limit={MAX_FILMS_LIST_COUNT} />
+          <FilmsList films={similarFilms} limit={MAX_FILMS_LIST_COUNT} />
         </section>
 
         <footer className="page-footer">
@@ -253,7 +245,9 @@ const FilmScreen = ({
 
 FilmScreen.propTypes = {
   filmId: PropTypes.string.isRequired,
-  films: PropTypes.arrayOf(PropTypes.exact(filmType).isRequired).isRequired,
+  film: PropTypes.exact(filmType).isRequired,
+  similarFilms: PropTypes.arrayOf(PropTypes.exact(filmType)).isRequired,
+  filmReviews: PropTypes.arrayOf(PropTypes.exact(reviewType)).isRequired,
   onPlayBtnClick: PropTypes.func
 };
 

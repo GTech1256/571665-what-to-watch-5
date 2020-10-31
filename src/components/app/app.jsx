@@ -2,46 +2,52 @@ import React from "react";
 import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import MainScreen from "../main-screen/main-screen";
+import {MAIN_SCREEN_ROUTE_PATH} from "../main-screen/route";
 import SignInScreen from "../sign-in-screen/sign-in-screen";
+import {SIGN_IN_SCREEN_ROUTE_PATH} from "../sign-in-screen/route";
 import MyListScreen from "../my-list-screen/my-list-screen.connect";
+import {MY_LIST_SCREEN_ROUTE_PATH} from "../my-list-screen/route";
 import FilmScreen from "../film-screen/film-screen.connect";
-import AddReviewScreen from "../add-review-screen/add-review-screen";
+import {FILM_SCREEN_ROUTE_PATH} from "../film-screen/route";
+import AddReviewScreen from "../add-review-screen/add-review-screen.connect";
+import {ADD_REVIEW_SCREEN_ROUTE_PATH} from "../add-review-screen/route";
 import PlayerScreen from "../player-screen/player-screen.connect";
+import {getPlayerScreenFullPath, PLAYER_SCREEN_ROUTE_PATH} from "../player-screen/route";
 import {filmType} from "../../types";
 
 const App = ({promoFilm}) => (
   <BrowserRouter>
     <Switch>
       <Route
-        path="/"
+        path={MAIN_SCREEN_ROUTE_PATH}
         exact
         render={({history}) => {
           return (
             <MainScreen
               filmPromo={promoFilm}
-              onPlayBtnClick={() => history.push(`/player/${promoFilm.id}`)}
+              onPlayBtnClick={() => history.push(getPlayerScreenFullPath(promoFilm.id))}
             />
           );
         }}
       />
-      <Route path="/login" exact>
+      <Route path={SIGN_IN_SCREEN_ROUTE_PATH} exact>
         <SignInScreen />
       </Route>
-      <Route path="/mylist" exact>
+      <Route path={MY_LIST_SCREEN_ROUTE_PATH} exact>
         <MyListScreen />
       </Route>
       <Route
-        path="/films/:id"
+        path={FILM_SCREEN_ROUTE_PATH}
         exact
         render={({history, match}) => (
           <FilmScreen
             filmId={match.params.id}
-            onPlayBtnClick={() => history.push(`/player/${match.params.id}`)}
+            onPlayBtnClick={() => history.push(getPlayerScreenFullPath(match.params.id))}
           />
         )}
       />
       <Route
-        path="/films/:id/review"
+        path={ADD_REVIEW_SCREEN_ROUTE_PATH}
         exact
         render={({match}) => (
           <AddReviewScreen
@@ -50,12 +56,12 @@ const App = ({promoFilm}) => (
         )}
       />
       <Route
-        path="/player/:id"
+        path={PLAYER_SCREEN_ROUTE_PATH}
         exact
         render={({history, match}) => (
           <PlayerScreen
             filmId={match.params.id}
-            onExitClick={() => history.push(`/`)}
+            onExitClick={() => history.push(MAIN_SCREEN_ROUTE_PATH)}
           />
         )}
       />

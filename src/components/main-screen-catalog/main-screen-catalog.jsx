@@ -27,7 +27,7 @@ const MainScreenCatalog = ({
 
       <FileList films={films.slice(0, filmsShowedCount)} />
 
-      {filmsShowedCount !== films.length && (
+      {filmsShowedCount < films.length && (
         <ShowMoreBtn onClick={onShowMoreBtnClick} />
       )}
     </section>
