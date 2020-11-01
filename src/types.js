@@ -12,7 +12,7 @@ export const reviewType = {
 };
 
 export const filmType = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   posterImage: PropTypes.string.isRequired,
   previewImage: PropTypes.string.isRequired,

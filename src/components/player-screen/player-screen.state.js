@@ -10,7 +10,7 @@ export default withState(
     },
     (
         setState,
-        _,
+        _props,
         {
           isPlaying
         }

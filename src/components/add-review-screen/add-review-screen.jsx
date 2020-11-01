@@ -7,8 +7,11 @@ import {filmType} from "../../types";
 import {getFilmScreenFullPath} from "../film-screen/route";
 import {MAIN_SCREEN_ROUTE_PATH} from "../main-screen/route";
 
-const AddReviewScreen = ({film}) => {
-  const {id, poster, name} = film;
+const AddReviewScreen = ({
+  film,
+  onSubmit
+}) => {
+  const {id, posterImage, name} = film;
 
   return (
     <section className="movie-card movie-card--full">
@@ -43,11 +46,11 @@ const AddReviewScreen = ({film}) => {
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src={poster} alt={`${name} poster`} width="218" height="327"/>
+          <img src={posterImage} alt={`${name} poster`} width="218" height="327"/>
         </div>
       </div>
 
-      <ReviewForm />
+      <ReviewForm onSubmit={onSubmit} />
 
     </section>
   );
@@ -56,6 +59,7 @@ const AddReviewScreen = ({film}) => {
 AddReviewScreen.propTypes = {
   filmId: PropTypes.string.isRequired,
   film: PropTypes.exact(filmType).isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
 
 export default AddReviewScreen;

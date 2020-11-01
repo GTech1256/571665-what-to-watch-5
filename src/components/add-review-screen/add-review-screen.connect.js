@@ -1,9 +1,18 @@
 import {connect} from "react-redux";
-import {getFilmById} from "../../utils/getFilmById";
-import AddReviewScreen from "./add-review-screen";
+import {Operation} from "../../store/reducers/data/data";
+import {ActionCreator} from "../../store/middlewares/redirect";
+import ReviewForm from "./add-review-screen";
+import {getFilmScreenFullPath} from "../film-screen/route";
 
 export default connect(
-    ({DATA}, {filmId}) => ({
-      film: getFilmById(filmId, DATA.films)
+    null,
+    (dispatch, {filmId}) => ({
+      onSubmit(comment) {
+        dispatch(Operation.sendComment(
+            filmId,
+            comment,
+            () => dispatch(ActionCreator.redirect(getFilmScreenFullPath(filmId)))
+        ));
+      }
     })
-)(AddReviewScreen);
+)(ReviewForm);

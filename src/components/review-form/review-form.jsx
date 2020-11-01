@@ -17,7 +17,7 @@ const ReviewForm = ({
       <form action="#" className="add-review__form" onSubmit={onSubmit}>
         <div className="rating">
           <div className="rating__stars">
-            {new Array(MAX_RATING_COUNT).fill(``).map((_, index) => {
+            {new Array(MAX_RATING_COUNT).fill(``).map((_element, index) => {
               const starIndex = index + 1;
 
               return (
@@ -46,7 +46,7 @@ const ReviewForm = ({
         <div className="add-review__text">
           <textarea
             className="add-review__textarea"
-            name="review-text"
+            name="comment"
             id="review-text"
             placeholder="Review text"
             value={textValue}
@@ -71,10 +71,6 @@ ReviewForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onStarChange: PropTypes.func.isRequired,
   onTextChange: PropTypes.func.isRequired,
-};
-
-ReviewForm.defaultProps = {
-  onSubmit: () => {}
 };
 
 export default ReviewForm;
