@@ -1,18 +1,22 @@
-import {FILM_ALL_GENRES} from "../const";
+import {FIRST_FILTER_NAME} from "../const";
 
 const DEFAULT_EMPTY_DURATION_VALUE = `0`;
 const EMPTY_DURATION_REPEAT = 2;
 
-export const getFilmsByGenre = (films, lookupGenre) => lookupGenre === FILM_ALL_GENRES ?
+export const getFilmsByGenre = (films, lookupGenre) => lookupGenre === FIRST_FILTER_NAME ?
   films :
   films.filter(
       ({genre}) => genre === lookupGenre
   );
 
 export const getGenresByFilms = (films) => [
-  FILM_ALL_GENRES,
+  FIRST_FILTER_NAME,
   ...new Set(films.map(({genre}) => genre))
 ];
+
+export const getSimilarFilms = (films, {id, genre}) => films.filter(
+    (film) => genre === film.genre && id !== film.id
+);
 
 const getHumanizedDurationValue = (time) => `${Math.floor(time)}`.padEnd(EMPTY_DURATION_REPEAT, DEFAULT_EMPTY_DURATION_VALUE);
 

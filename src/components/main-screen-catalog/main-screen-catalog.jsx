@@ -9,45 +9,34 @@ const MainScreenCatalog = ({
   films,
   activeGenre,
   genres,
-  state,
+  isShowShowMoreBtn,
   onGenreClick,
   onShowMoreBtnClick
-}) => {
-  const {filmsShowedCount} = state;
+}) => (
+  <section className="catalog">
+    <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-  return (
-    <section className="catalog">
-      <h2 className="catalog__title visually-hidden">Catalog</h2>
+    <GenreList
+      genres={genres}
+      activeGenre={activeGenre}
+      onGenreClick={onGenreClick}
+    />
 
-      <GenreList
-        genres={genres}
-        activeGenre={activeGenre}
-        onGenreClick={onGenreClick}
-      />
+    <FileList films={films} />
 
-      <FileList films={films.slice(0, filmsShowedCount)} />
-
-      {filmsShowedCount < films.length && (
-        <ShowMoreBtn onClick={onShowMoreBtnClick} />
-      )}
-    </section>
-  );
-};
+    {isShowShowMoreBtn && (
+      <ShowMoreBtn onClick={onShowMoreBtnClick} />
+    )}
+  </section>
+);
 
 MainScreenCatalog.propTypes = {
   films: PropTypes.arrayOf(PropTypes.exact(filmType).isRequired).isRequired,
   activeGenre: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  state: PropTypes.exact({
-    filmsShowedCount: PropTypes.number.isRequired
-  }).isRequired,
+  isShowShowMoreBtn: PropTypes.bool.isRequired,
   onGenreClick: PropTypes.func.isRequired,
   onShowMoreBtnClick: PropTypes.func.isRequired
-};
-
-MainScreenCatalog.defaultProps = {
-  onPlayBtnClick: () => {},
-  onMyListBtnClick: () => {}
 };
 
 export default MainScreenCatalog;

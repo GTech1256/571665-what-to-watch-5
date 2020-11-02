@@ -14,7 +14,7 @@ const GenreList = ({
       >
         <a
           className="catalog__genres-link"
-          onClick={() => onGenreClick(genre)}
+          onClick={() => activeGenre !== genre && onGenreClick(genre)}
         >
           {genre}
         </a>

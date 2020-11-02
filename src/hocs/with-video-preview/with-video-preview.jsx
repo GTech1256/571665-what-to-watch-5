@@ -71,6 +71,10 @@ const withVideoPreview = (Component) => {
 
       this.stopVideo();
     }
+
+    componentWillUnmount() {
+      this.clearTimeout();
+    }
   }
 
   WithVideoPreview.propTypes = {};

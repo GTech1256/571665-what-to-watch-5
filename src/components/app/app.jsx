@@ -11,10 +11,15 @@ import FilmScreen from "../film-screen/film-screen.connect";
 import {FILM_SCREEN_ROUTE_PATH} from "../film-screen/route";
 import AddReviewScreen from "../add-review-screen/add-review-screen.connect";
 import {ADD_REVIEW_SCREEN_ROUTE_PATH} from "../add-review-screen/route";
-import PlayerScreen from "../player-screen/player-screen.connect";
+import PlayerScreen from "../player-screen/player-screen.state";
 import {getPlayerScreenFullPath, PLAYER_SCREEN_ROUTE_PATH} from "../player-screen/route";
 import {filmType} from "../../types";
 import browserHistory from "../../browser-history";
+import withFilm from "../../hocs/with-film/with-film";
+
+const AddReviewFilmScreen = withFilm(AddReviewScreen);
+const PlayerFilmScreen = withFilm(PlayerScreen);
+const FilmScreenWrapped = withFilm(FilmScreen);
 
 const App = ({promoFilm}) => (
   <BrowserRouter history={browserHistory}>
@@ -41,7 +46,8 @@ const App = ({promoFilm}) => (
         path={FILM_SCREEN_ROUTE_PATH}
         exact
         render={({history, match}) => (
-          <FilmScreen
+          <FilmScreenWrapped
+            key={match.params.id}
             filmId={match.params.id}
             onPlayBtnClick={() => history.push(getPlayerScreenFullPath(match.params.id))}
           />
@@ -51,7 +57,7 @@ const App = ({promoFilm}) => (
         path={ADD_REVIEW_SCREEN_ROUTE_PATH}
         exact
         render={({match}) => (
-          <AddReviewScreen
+          <AddReviewFilmScreen
             filmId={match.params.id}
           />
         )}
@@ -60,7 +66,7 @@ const App = ({promoFilm}) => (
         path={PLAYER_SCREEN_ROUTE_PATH}
         exact
         render={({history, match}) => (
-          <PlayerScreen
+          <PlayerFilmScreen
             filmId={match.params.id}
             onExitClick={() => history.push(MAIN_SCREEN_ROUTE_PATH)}
           />

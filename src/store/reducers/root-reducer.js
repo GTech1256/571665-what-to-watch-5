@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
-import {adjustment} from "./adjustment/adjustment";
-import {data} from "./data/data";
-import {user} from "./user/user";
+import {reducer as adjustmentReducer} from "./adjustment/adjustment";
+import {reducer as dataReducer} from "./data/data";
+import {reducer as userReducer} from "./user/user";
 
 export const NameSpace = {
   ADJUSTMENT: `ADJUSTMENT`,
@@ -10,7 +10,7 @@ export const NameSpace = {
 };
 
 export default combineReducers({
-  [NameSpace.ADJUSTMENT]: adjustment,
-  [NameSpace.DATA]: data,
-  [NameSpace.USER]: user,
+  [NameSpace.ADJUSTMENT]: adjustmentReducer,
+  [NameSpace.DATA]: dataReducer,
+  [NameSpace.USER]: userReducer,
 });
