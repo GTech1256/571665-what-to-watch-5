@@ -4,7 +4,7 @@ import {applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
-import App from "./components/app/app.connect";
+import App from "./components/app/app";
 import rootReducer from "./store/reducers/root-reducer";
 import {redirect} from "./store/middlewares/redirect";
 import {Operation as UserOperation, ActionCreator} from "./store/reducers/user/user";

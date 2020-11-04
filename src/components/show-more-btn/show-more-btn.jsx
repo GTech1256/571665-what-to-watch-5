@@ -1,7 +1,7 @@
 import React, {memo} from "react";
 import PropTypes from "prop-types";
 
-export const ShowMoreBtn = ({
+const ShowMoreBtn = ({
   onClick
 }) => (
   <div className="catalog__more">

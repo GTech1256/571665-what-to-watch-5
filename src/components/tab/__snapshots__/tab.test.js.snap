@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tab is rendered correctly Active tab 1`] = `
+<li
+  className="movie-nav__item movie-nav__item--active"
+>
+  <a
+    className="movie-nav__link"
+    onClick={[Function]}
+  >
+    Title
+  </a>
+</li>
+`;
+
+exports[`Tab is rendered correctly Inative tab 1`] = `
+<li
+  className="movie-nav__item "
+>
+  <a
+    className="movie-nav__link"
+    onClick={[Function]}
+  >
+    Title
+  </a>
+</li>
+`;

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withFilm is rendered correctly 1`] = `
+<p>
+  The Grand Budapest Hotel
+</p>
+`;

@@ -1,5 +1,7 @@
 export const FIRST_FILTER_NAME = `All Genres`;
 
+export const FILMS_SHOWED_PER_STEP_COUNT = 8;
+
 export const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,

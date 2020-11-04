@@ -1,7 +1,9 @@
 import {connect} from "react-redux";
 import {getPromoFilm} from "../../store/reducers/data/selectors";
-import App from "./app";
+import MainScreen from "./main-screen";
 
 export default connect(
-    (state) => ({promoFilm: getPromoFilm(state)})
-)(App);
+    (state) => ({
+      filmPromo: getPromoFilm(state)
+    })
+)(MainScreen);

@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import {extend} from "../../utils/extend";
 
-export const withState = (initialState, mapHandlersToProps) => {
+const withState = (initialState, mapHandlersToProps) => {
   return (Component) =>
     class WithState extends PureComponent {
       constructor(props) {
@@ -23,3 +23,5 @@ export const withState = (initialState, mapHandlersToProps) => {
       }
     };
 };
+
+export default withState;

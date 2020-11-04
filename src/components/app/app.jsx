@@ -1,7 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {Router as BrowserRouter, Switch, Route} from "react-router-dom";
-import MainScreen from "../main-screen/main-screen";
+import MainScreen from "../main-screen/main-screen.connect";
 import {MAIN_SCREEN_ROUTE_PATH} from "../main-screen/route";
 import SignInScreen from "../sign-in-screen/sign-in-screen.connect";
 import {SIGN_IN_SCREEN_ROUTE_PATH} from "../sign-in-screen/route";
@@ -11,31 +10,24 @@ import FilmScreen from "../film-screen/film-screen.connect";
 import {FILM_SCREEN_ROUTE_PATH} from "../film-screen/route";
 import AddReviewScreen from "../add-review-screen/add-review-screen.connect";
 import {ADD_REVIEW_SCREEN_ROUTE_PATH} from "../add-review-screen/route";
-import PlayerScreen from "../player-screen/player-screen.state";
+import PlayerScreen from "../player-screen/player-screen.connect";
 import {getPlayerScreenFullPath, PLAYER_SCREEN_ROUTE_PATH} from "../player-screen/route";
-import {filmType} from "../../types";
 import browserHistory from "../../browser-history";
-import withFilm from "../../hocs/with-film/with-film";
+import withFilm from "../../hocs/with-film/with-film.connect";
 
 const AddReviewFilmScreen = withFilm(AddReviewScreen);
 const PlayerFilmScreen = withFilm(PlayerScreen);
 const FilmScreenWrapped = withFilm(FilmScreen);
 
-const App = ({promoFilm}) => (
+const App = () => (
   <BrowserRouter history={browserHistory}>
     <Switch>
       <Route
         path={MAIN_SCREEN_ROUTE_PATH}
         exact
-        render={({history}) => {
-          return (
-            <MainScreen
-              filmPromo={promoFilm}
-              onPlayBtnClick={() => history.push(getPlayerScreenFullPath(promoFilm.id))}
-            />
-          );
-        }}
-      />
+      >
+        <MainScreen />
+      </Route>
       <Route path={SIGN_IN_SCREEN_ROUTE_PATH} exact>
         <SignInScreen />
       </Route>
@@ -76,8 +68,6 @@ const App = ({promoFilm}) => (
   </BrowserRouter>
 );
 
-App.propTypes = {
-  promoFilm: PropTypes.exact(filmType).isRequired
-};
+App.propTypes = {};
 
 export default App;
