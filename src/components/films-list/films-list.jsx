@@ -2,9 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card";
 import {filmType} from "../../types";
-import withVideoPreview from "../../hocs/with-video-preview/with-video-preview";
 
-const FilmCardWrapper = withVideoPreview(FilmCard);
 
 const FilmsList = ({
   films,
@@ -19,7 +17,7 @@ const FilmsList = ({
 
   return (
     <div className="catalog__movies-list">
-      {localFilms.map((film) => <FilmCardWrapper
+      {localFilms.map((film) => <FilmCard
         film={film}
         key={film.id}
       />)

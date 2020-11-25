@@ -1,0 +1,368 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainScreenCatalog is rendered correctly with ShowMoreBtn 1`] = `
+<section
+  className="catalog"
+>
+  <h2
+    className="catalog__title visually-hidden"
+  >
+    Catalog
+  </h2>
+  <ul
+    className="catalog__genres-list"
+  >
+    <li
+      className="catalog__genres-item catalog__genres-item--active"
+    >
+      <a
+        className="catalog__genres-link"
+        onClick={[Function]}
+      >
+        All Genres
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+    >
+      <a
+        className="catalog__genres-link"
+        onClick={[Function]}
+      >
+        Comedy
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+    >
+      <a
+        className="catalog__genres-link"
+        onClick={[Function]}
+      >
+        Fantasy
+      </a>
+    </li>
+  </ul>
+  <div
+    className="catalog__movies-list"
+  >
+    <article
+      className="small-movie-card catalog__movies-card"
+    >
+      <a
+        href="/films/0"
+        onClick={[Function]}
+      >
+        <div
+          className="small-movie-card__image"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <video
+            height="175"
+            poster="img/the-grand-budapest-hotel-poster.jpg"
+            src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+            width="280"
+          />
+        </div>
+      </a>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/0"
+          onClick={[Function]}
+        >
+          The Grand Budapest Hotel
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+    >
+      <a
+        href="/films/1"
+        onClick={[Function]}
+      >
+        <div
+          className="small-movie-card__image"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <video
+            height="175"
+            poster="img/the-grand-budapest-hotel-poster.jpg"
+            src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+            width="280"
+          />
+        </div>
+      </a>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/1"
+          onClick={[Function]}
+        >
+          The Grand Budapest Hotel
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+    >
+      <a
+        href="/films/2"
+        onClick={[Function]}
+      >
+        <div
+          className="small-movie-card__image"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <video
+            height="175"
+            poster="img/the-grand-budapest-hotel-poster.jpg"
+            src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+            width="280"
+          />
+        </div>
+      </a>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/2"
+          onClick={[Function]}
+        >
+          The Grand Budapest Hotel
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+    >
+      <a
+        href="/films/3"
+        onClick={[Function]}
+      >
+        <div
+          className="small-movie-card__image"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <video
+            height="175"
+            poster="img/the-grand-budapest-hotel-poster.jpg"
+            src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+            width="280"
+          />
+        </div>
+      </a>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/3"
+          onClick={[Function]}
+        >
+          The Grand Budapest Hotel
+        </a>
+      </h3>
+    </article>
+  </div>
+  <div
+    className="catalog__more"
+  >
+    <button
+      className="catalog__button"
+      onClick={[Function]}
+      type="button"
+    >
+      Show more
+    </button>
+  </div>
+</section>
+`;
+
+exports[`MainScreenCatalog is rendered correctly without ShowMoreBtn 1`] = `
+<section
+  className="catalog"
+>
+  <h2
+    className="catalog__title visually-hidden"
+  >
+    Catalog
+  </h2>
+  <ul
+    className="catalog__genres-list"
+  >
+    <li
+      className="catalog__genres-item catalog__genres-item--active"
+    >
+      <a
+        className="catalog__genres-link"
+        onClick={[Function]}
+      >
+        All Genres
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+    >
+      <a
+        className="catalog__genres-link"
+        onClick={[Function]}
+      >
+        Comedy
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+    >
+      <a
+        className="catalog__genres-link"
+        onClick={[Function]}
+      >
+        Fantasy
+      </a>
+    </li>
+  </ul>
+  <div
+    className="catalog__movies-list"
+  >
+    <article
+      className="small-movie-card catalog__movies-card"
+    >
+      <a
+        href="/films/0"
+        onClick={[Function]}
+      >
+        <div
+          className="small-movie-card__image"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <video
+            height="175"
+            poster="img/the-grand-budapest-hotel-poster.jpg"
+            src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+            width="280"
+          />
+        </div>
+      </a>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/0"
+          onClick={[Function]}
+        >
+          The Grand Budapest Hotel
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+    >
+      <a
+        href="/films/1"
+        onClick={[Function]}
+      >
+        <div
+          className="small-movie-card__image"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <video
+            height="175"
+            poster="img/the-grand-budapest-hotel-poster.jpg"
+            src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+            width="280"
+          />
+        </div>
+      </a>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/1"
+          onClick={[Function]}
+        >
+          The Grand Budapest Hotel
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+    >
+      <a
+        href="/films/2"
+        onClick={[Function]}
+      >
+        <div
+          className="small-movie-card__image"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <video
+            height="175"
+            poster="img/the-grand-budapest-hotel-poster.jpg"
+            src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+            width="280"
+          />
+        </div>
+      </a>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/2"
+          onClick={[Function]}
+        >
+          The Grand Budapest Hotel
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+    >
+      <a
+        href="/films/3"
+        onClick={[Function]}
+      >
+        <div
+          className="small-movie-card__image"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <video
+            height="175"
+            poster="img/the-grand-budapest-hotel-poster.jpg"
+            src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+            width="280"
+          />
+        </div>
+      </a>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/3"
+          onClick={[Function]}
+        >
+          The Grand Budapest Hotel
+        </a>
+      </h3>
+    </article>
+  </div>
+</section>
+`;

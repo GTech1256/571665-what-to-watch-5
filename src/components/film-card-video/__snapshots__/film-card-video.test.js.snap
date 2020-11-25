@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmCardVideo is rendered correctly 1`] = `
+<div
+  className="small-movie-card__image"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <p>
+    MockComponent
+  </p>
+</div>
+`;

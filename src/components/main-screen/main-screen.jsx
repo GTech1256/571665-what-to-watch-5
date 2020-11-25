@@ -3,18 +3,19 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import MainScreenCatalog from "../main-screen-catalog/main-screen-catalog.connect";
 import UserBlock from "../user-block/user-block.connect";
-import {filmType} from "../../types";
+import {getFilmScreenFullPath} from "../film-screen/route";
 import {MAIN_SCREEN_ROUTE_PATH} from "./route";
+import {filmType} from "../../types";
 
 const MainScreen = ({
   filmPromo: {
+    id,
     name,
     released,
     genre,
     posterImage
   },
   onMyListBtnClick,
-  onPlayBtnClick,
 }) => (
   <React.Fragment>
     <section className="movie-card">
@@ -50,16 +51,16 @@ const MainScreen = ({
             </p>
 
             <div className="movie-card__buttons">
-              <button
+              <Link
                 className="btn btn--play movie-card__button"
                 type="button"
-                onClick={onPlayBtnClick}
+                to={getFilmScreenFullPath(id)}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
-              </button>
+              </Link>
               <button
                 className="btn btn--list movie-card__button"
                 type="button"
@@ -98,12 +99,10 @@ const MainScreen = ({
 
 MainScreen.propTypes = {
   filmPromo: PropTypes.exact(filmType).isRequired,
-  onPlayBtnClick: PropTypes.func,
   onMyListBtnClick: PropTypes.func,
 };
 
 MainScreen.defaultProps = {
-  onPlayBtnClick: () => {},
   onMyListBtnClick: () => {}
 };
 

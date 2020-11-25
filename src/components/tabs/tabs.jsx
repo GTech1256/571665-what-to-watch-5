@@ -10,22 +10,22 @@ const Tabs = ({
   <div className="movie-card__desc">
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
-        {children.map((tab) => (
+        {children.map((tab, index) => (
           <Tab
             key={tab.props.title}
             title={tab.props.title}
-            isActive={activeItem.props.title === tab.props.title}
-            onClick={() => onActiveItemChange(tab)}
+            isActive={activeItem === index}
+            onClick={() => onActiveItemChange(index)}
           />
         ))}
       </ul>
     </nav>
-    {activeItem.props.children}
+    {children[activeItem].props.children}
   </div>
 );
 
 Tabs.propTypes = {
-  activeItem: PropTypes.element.isRequired,
+  activeItem: PropTypes.number.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
   children: PropTypes.arrayOf(
       PropTypes.element.isRequired

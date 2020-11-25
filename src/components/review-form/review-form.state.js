@@ -1,12 +1,15 @@
-import {withState} from "../../hocs/with-state/with-state";
+import withState from "../../hocs/with-state/with-state";
 import ReviewForm from "./review-form";
+
+const INITIAL_START_COUNT = `3`;
+const INITIAL_TEXT = ``;
 
 export default withState(
     {
-      starValue: `3`,
-      textValue: ``
+      starValue: INITIAL_START_COUNT,
+      textValue: INITIAL_TEXT
     },
-    (setState, props, state) => ({
+    (setState) => ({
       onStarChange({target}) {
         setState({
           starValue: target.value
@@ -18,14 +21,5 @@ export default withState(
           textValue: target.value
         });
       },
-
-      onSubmit(evt) {
-        evt.preventDefault();
-
-        props.onSubmit({
-          rating: state.starValue,
-          comment: state.textValue
-        });
-      }
     })
 )(ReviewForm);

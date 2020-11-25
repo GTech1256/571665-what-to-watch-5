@@ -14,7 +14,14 @@ const ReviewForm = ({
 }) => {
   return (
     <div className="add-review">
-      <form action="#" className="add-review__form" onSubmit={onSubmit}>
+      <form action="#" className="add-review__form" onSubmit={(evt) => {
+        evt.preventDefault();
+
+        onSubmit({
+          rating: starValue,
+          comment: textValue
+        });
+      }}>
         <div className="rating">
           <div className="rating__stars">
             {new Array(MAX_RATING_COUNT).fill(``).map((_element, index) => {

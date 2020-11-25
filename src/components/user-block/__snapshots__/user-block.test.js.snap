@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserBlock is rendered correctly Authed 1`] = `
+<div
+  className="user-block"
+>
+  <div
+    className="user-block__avatar"
+  >
+    <img
+      alt="User avatar"
+      height="63"
+      src="img/avatar.jpg"
+      width="63"
+    />
+  </div>
+</div>
+`;
+
+exports[`UserBlock is rendered correctly Unauthed 1`] = `
+<div
+  className="user-block"
+>
+  <a
+    className="user-block__link"
+    href="/login"
+    onClick={[Function]}
+  >
+    Sign in
+  </a>
+</div>
+`;

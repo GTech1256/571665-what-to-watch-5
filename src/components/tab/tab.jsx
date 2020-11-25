@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 
 const Tab = ({title, onClick, isActive}) => (
-  <li className={`movie-nav__item ${isActive ? `movie-nav__item--active` : ``}`} onClick={onClick}>
-    <a className="movie-nav__link">{title}</a>
+  <li className={`movie-nav__item ${isActive ? `movie-nav__item--active` : ``}`}>
+    <a className="movie-nav__link" onClick={onClick}>{title}</a>
   </li>
 );
 
