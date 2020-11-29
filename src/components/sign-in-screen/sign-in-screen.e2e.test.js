@@ -32,8 +32,12 @@ it(`Should form be submitted`, () => {
     .find(`form.sign-in__form`)
     .simulate(`submit`);
 
-  expect(handleSubmit).toHaveBeenNthCalledWith(1, {
-    email: expectEmail,
-    password: expectPassword
-  });
+  expect(handleSubmit).toHaveBeenNthCalledWith(
+      1,
+      {
+        email: expectEmail,
+        password: expectPassword
+      },
+      expect.any(Function)
+  );
 });

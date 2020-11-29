@@ -11,7 +11,20 @@ export const APIRoute = {
   FILMS: `/films`,
   PROMO_FILM: `/films/promo`,
   LOGIN: `/login`,
-  COMMENTS: `/comments`
+  COMMENTS: `/comments`,
+  FAVORITE: `/favorite`
+};
+
+export const NameSpace = {
+  ADJUSTMENT: `ADJUSTMENT`,
+  DATA: `DATA`,
+  USER: `USER`,
+};
+
+export const SeverError = {
+  NotFound: `Not Found`,
+  NotAvailable: `Server not available`,
+  UnknownError: `Unknown error`
 };
 
 export const EMPTY_STATE_VALUE = null;

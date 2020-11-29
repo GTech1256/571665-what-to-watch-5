@@ -1,7 +1,6 @@
 import {createSelector} from "reselect";
 import {getFilms} from "../data/selectors";
-import {NameSpace} from "../root-reducer";
-import {FIRST_FILTER_NAME} from "../../../const";
+import {FIRST_FILTER_NAME, NameSpace} from "../../../const";
 
 const NAME_SPACE = NameSpace.ADJUSTMENT;
 
@@ -29,3 +28,6 @@ export const getShowedFilms = createSelector(
         films
     ) => films.slice(0, count)
 );
+
+
+export const getErrorMessage = (state) => state[NAME_SPACE].errorMessage;

@@ -2,14 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import UserBlock from "../user-block/user-block.connect";
-import ReviewForm from "../review-form/review-form.state";
+import ReviewForm from "../review-form/review-form.connect";
 import {filmType} from "../../types";
 import {getFilmScreenFullPath} from "../film-screen/route";
 import {MAIN_SCREEN_ROUTE_PATH} from "../main-screen/route";
 
 const AddReviewScreen = ({
-  film,
-  onSubmit
+  film
 }) => {
   const {id, posterImage, name} = film;
 
@@ -50,16 +49,14 @@ const AddReviewScreen = ({
         </div>
       </div>
 
-      <ReviewForm onSubmit={onSubmit} />
+      <ReviewForm />
 
     </section>
   );
 };
 
 AddReviewScreen.propTypes = {
-  filmId: PropTypes.string.isRequired,
   film: PropTypes.exact(filmType).isRequired,
-  onSubmit: PropTypes.func.isRequired
 };
 
 export default AddReviewScreen;

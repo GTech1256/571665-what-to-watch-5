@@ -1397,3 +1397,9 @@ main {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%); }
+
+.review__error {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 16px;
+  color: red; }

@@ -11,7 +11,7 @@ it(`Should FilmCard component render correctly`, () => {
         <MemoryRouter>
           <FilmCard
             film={filmMock}
-            onCardClick={noop}
+            onClick={noop}
           >
           </FilmCard>
         </MemoryRouter>

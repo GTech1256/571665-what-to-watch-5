@@ -4,6 +4,7 @@ import {MemoryRouter} from "react-router-dom";
 import renderer from "react-test-renderer";
 import films from "../../mocks/films";
 import store from "../../mocks/store";
+import {noop} from "../../utils/noop";
 import MyListScreen from "./my-list-screen";
 
 it(`MyListScreen is rendered correctly`, () => {
@@ -13,6 +14,8 @@ it(`MyListScreen is rendered correctly`, () => {
           <Provider store={store}>
             <MyListScreen
               films={films}
+              fetchFavoriteFilms={noop}
+              resetFavoriteFilms={noop}
             />
           </Provider>
         </MemoryRouter>,

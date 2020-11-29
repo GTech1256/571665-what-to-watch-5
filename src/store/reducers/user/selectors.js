@@ -1,4 +1,4 @@
-import {NameSpace} from "../root-reducer";
+import {NameSpace} from "../../../const";
 
 const NAME_SPACE = NameSpace.USER;
 
