@@ -5,6 +5,7 @@ exports[`Should render PlayerScreen component correctly 1`] = `
   className="player"
 >
   <video
+    autoPlay={true}
     className="player__video"
     poster="img/the-grand-budapest-hotel-bg.jpg"
     src="https://some-link"
@@ -61,12 +62,12 @@ exports[`Should render PlayerScreen component correctly 1`] = `
           width="19"
         >
           <use
-            xlinkHref="#play-s"
+            xlinkHref="#pause"
           />
         </svg>
         <span>
            
-          Play
+          Pause
         </span>
       </button>
       <div

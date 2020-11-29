@@ -10,10 +10,11 @@ export default {
       .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
   ),
 
-  login: (authData) => (dispatch, _getState, api) => (
+  login: (authData, onError) => (dispatch, _getState, api) => (
     api.post(APIRoute.LOGIN, authData)
       .then(({data}) => dispatch(ActionCreator.getUser(data)))
       .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
       .then(() => dispatch(redirectActionCreator.redirect(MAIN_SCREEN_ROUTE_PATH)))
+      .catch(onError)
   )
 };

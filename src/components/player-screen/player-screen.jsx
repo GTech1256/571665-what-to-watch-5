@@ -7,43 +7,69 @@ const INIT_DURATION_PERCENT = `0%`;
 const INIT_DURATION_TIME = `00:00:00`;
 
 const PlayerScreen = ({film, onExitButtonClick}) => {
-  const [playingStatus, setPlayingStatus] = useState(false);
-  const [duration, setDuration] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const video = useRef();
   const {title, backgroundImage, videoLink} = film;
 
-  const handlePlayButtonClick = useCallback(() => {
-    setPlayingStatus(!playingStatus);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [duration, setDuration] = useState(0);
+  const [progress, setProgress] = useState(0);
 
-    if (!playingStatus) {
+  const video = useRef();
+
+  useEffect(() => {
+    if (isPlaying) {
       video.current.play();
     } else {
       video.current.pause();
     }
-  });
-
-  const handleFullScreenButtonClick = useCallback(() => {
-    video.current.requestFullscreen();
-  });
+  }, [isPlaying]);
 
   useEffect(() => {
-    if (!video.current) {
-      return;
-    }
-
     video.current.ondurationchange = () => {
       setDuration(Math.floor(video.current.duration));
 
       video.current.ontimeupdate = () => {
-        setProgress(video.current.currentTime);
+        if (video.current) {
+          setProgress(video.current.currentTime);
+        }
       };
     };
-  }, [video.current]);
+
+    return () => {
+      video.current.ondurationchange = null;
+      video.current.ontimeupdate = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    video.current.onpause = () => {
+      setIsPlaying(false);
+    };
+
+    video.current.onplay = () => {
+      setIsPlaying(true);
+    };
+
+    return () => {
+      video.current.onpause = null;
+      video.current.onplay = null;
+    };
+  }, [setIsPlaying]);
+
+  const handlePlayButtonClick = useCallback(() => {
+    setIsPlaying(!isPlaying);
+  }, [setIsPlaying, isPlaying]);
+
+  const handleFullScreenButtonClick = useCallback(() => {
+    if (video.current.webkitEnterFullScreen) {
+      video.current.webkitEnterFullScreen();
+    } else {
+      video.current.requestFullscreen();
+    }
+  }, []);
 
   return <React.Fragment>
     <div className="player">
-      <video poster={backgroundImage} src={videoLink} className="player__video" ref={video}/>
+      <video poster={backgroundImage} src={videoLink} className="player__video" ref={video} autoPlay={isPlaying}/>
 
       <button type="button" className="player__exit" onClick={onExitButtonClick}>Exit</button>
 
@@ -59,9 +85,9 @@ const PlayerScreen = ({film, onExitButtonClick}) => {
         <div className="player__controls-row">
           <button type="button" className="player__play" onClick={handlePlayButtonClick}>
             <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref={playingStatus ? `#pause` : `#play-s`}></use>
+              <use xlinkHref={isPlaying ? `#pause` : `#play-s`}></use>
             </svg>
-            <span> {playingStatus ? `Pause` : `Play`}</span>
+            <span> {isPlaying ? `Pause` : `Play`}</span>
           </button>
           <div className="player__name">{title}</div>
 

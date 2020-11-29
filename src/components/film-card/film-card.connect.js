@@ -1,14 +1,13 @@
 import {connect} from "react-redux";
-import PlayerScreen from "./player-screen";
 import {ActionCreator as RedirectActionCreator} from "../../store/middlewares/redirect";
 import {getFilmScreenFullPath} from "../film-screen/route";
+import FilmCard from "./film-card";
 
 export default connect(
     null,
-    (dispatch, {filmId}) => ({
-      onExitButtonClick() {
-        dispatch(RedirectActionCreator.redirect(getFilmScreenFullPath(filmId)));
-      },
+    (dispatch, {film}) => ({
+      onClick() {
+        dispatch(RedirectActionCreator.redirect(getFilmScreenFullPath(film.id)));
+      }
     })
-)(PlayerScreen);
-
+)(FilmCard);

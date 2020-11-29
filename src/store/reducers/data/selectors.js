@@ -1,5 +1,4 @@
-import {EMPTY_STATE_VALUE} from "../../../const";
-import {NameSpace} from "../root-reducer";
+import {EMPTY_STATE_VALUE, NameSpace} from "../../../const";
 
 const NAME_SPACE = NameSpace.DATA;
 

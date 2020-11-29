@@ -1,7 +1,13 @@
-import {getGenresByFilms} from "../../../bl/film";
-import {adaptFilmFromServer} from "../../../utils/filmAdapter";
-import {APIRoute} from "../../../const";
 import ActionCreator from "./action-creator";
+import {getGenresByFilms} from "../../../bl/film";
+import {getAuthorizationStatus} from "../user/selectors";
+import {APIRoute, AuthorizationStatus} from "../../../const";
+import {adaptFilmFromServer} from "../../../utils/filmAdapter";
+import {ActionCreator as RedirectActionCreator} from "../../middlewares/redirect";
+import {MY_LIST_SCREEN_ROUTE_PATH} from "../../../components/my-list-screen/route";
+
+const FILM_FAVORITE_STATUS_ADD = 1;
+const FILM_FAVORITE_STATUS_REMOVE = 0;
 
 export default {
   fetchFilmsList: () => (dispatch, _getState, api) => (
@@ -38,30 +44,25 @@ export default {
       .catch(onError)
   ),
 
-  // loadFavoriteFilms: () => (dispatch, getState, api) => {
-  //   return api.get(`/favorite`)
-  //     .then((response) => {
-  //       const favoriteFilms = filmsAdapter(response.data);
-  //       dispatch(ActionCreator.loadFavoriteFilms(favoriteFilms));
-  //     })
-  //     .catch((error) => {
-  //       throw error;
-  //     });
-  // },
+  fetchFavoriteFilms: () => (dispatch, _getState, api) => (
+    api.get(APIRoute.FAVORITE)
+      .then(({data}) => data.map(adaptFilmFromServer))
+      .then((favoriteFilms) => dispatch(ActionCreator.loadFavoriteFilms(favoriteFilms)))
+  ),
 
-  // addToFavorites: (filmId, data) => (dispatch, getState, api) => {
-  //   const adaptedData = +data;
-  //   return api.post(`/favorite/${filmId}/${adaptedData}`)
-  //     .then((response) => {
-  //       const favoriteFilm = filmAdapter(response.data);
-  //       if (favoriteFilm.isFavorite) {
-  //         dispatch(ActionCreator.addToFavorites(favoriteFilm));
-  //       } else {
-  //         dispatch(ActionCreator.removeFromFavorites(favoriteFilm));
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       throw error;
-  //     });
-  // },
+  changeFavoriteFilmStatus: (film, onSuccess) => (dispatch, getState, api) => {
+    const state = getState();
+    const authorizationStatus = getAuthorizationStatus(state);
+    const {id, isFavorite} = film;
+    const newFavoriteStatus = isFavorite ? FILM_FAVORITE_STATUS_REMOVE : FILM_FAVORITE_STATUS_ADD;
+
+    if (authorizationStatus !== AuthorizationStatus.AUTH) {
+      dispatch(RedirectActionCreator.redirect(MY_LIST_SCREEN_ROUTE_PATH));
+      return Promise.resolve();
+    }
+
+    return api.post(`${APIRoute.FAVORITE}/${id}/${newFavoriteStatus}`)
+      .then(({data}) => adaptFilmFromServer(data))
+      .then(onSuccess);
+  },
 };

@@ -8,37 +8,39 @@ const initialState = {
   user: EMPTY_STATE_VALUE
 };
 
-it(`Reducer without additional parameters should return initial state`, () => {
-  expect(reducer(void 0, {})).toEqual(initialState);
-});
+describe(`user reducers should change state correct`, () => {
+  it(`Reducer without additional parameters should return initial state`, () => {
+    expect(reducer(void 0, {})).toEqual(initialState);
+  });
 
-it(`Reducer should update authorizationStatus`, () => {
-  expect(
-      reducer(initialState, {
-        type: ActionType.REQUIRED_AUTHORIZATION,
-        payload: AuthorizationStatus.AUTH
-      })
-  ).toEqual(
-      extend(initialState, {
-        authorizationStatus: AuthorizationStatus.AUTH
-      })
-  );
-});
+  it(`Reducer should update authorizationStatus`, () => {
+    expect(
+        reducer(initialState, {
+          type: ActionType.REQUIRED_AUTHORIZATION,
+          payload: AuthorizationStatus.AUTH
+        })
+    ).toEqual(
+        extend(initialState, {
+          authorizationStatus: AuthorizationStatus.AUTH
+        })
+    );
+  });
 
-it(`Reducer should update user`, () => {
-  const userMock = {
-    username: `name`,
-    avatar: ``
-  };
+  it(`Reducer should update user`, () => {
+    const userMock = {
+      username: `name`,
+      avatar: ``
+    };
 
-  expect(
-      reducer(initialState, {
-        type: ActionType.GET_USER,
-        payload: userMock
-      })
-  ).toEqual(
-      extend(initialState, {
-        user: userMock
-      })
-  );
+    expect(
+        reducer(initialState, {
+          type: ActionType.GET_USER,
+          payload: userMock
+        })
+    ).toEqual(
+        extend(initialState, {
+          user: userMock
+        })
+    );
+  });
 });

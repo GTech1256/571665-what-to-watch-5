@@ -1,10 +1,16 @@
 import React, {PureComponent} from 'react';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {EMPTY_STATE_VALUE} from '../../const';
 import {filmType} from '../../types';
 
 const withFilm = (Component) => {
   class WithFilm extends PureComponent {
+    componentDidMount() {
+      if (this.props.film === EMPTY_STATE_VALUE) {
+        this.props.fetchFilm();
+      }
+    }
+
     render() {
       if (this.props.film === EMPTY_STATE_VALUE) {
         return null;
@@ -12,21 +18,15 @@ const withFilm = (Component) => {
 
       return <Component {...this.props}/>;
     }
-
-    componentDidMount() {
-      if (this.props.film === EMPTY_STATE_VALUE) {
-        this.props.fetchFilm();
-      }
-    }
   }
 
   WithFilm.propTypes = {
-    filmId: PropsTypes.string.isRequired,
-    film: PropsTypes.oneOfType([
-      PropsTypes.oneOf([null]),
-      PropsTypes.exact(filmType).isRequired
+    filmId: PropTypes.string.isRequired,
+    film: PropTypes.oneOfType([
+      PropTypes.oneOf([null]),
+      PropTypes.exact(filmType).isRequired
     ]),
-    fetchFilm: PropsTypes.func.isRequired,
+    fetchFilm: PropTypes.func.isRequired,
   };
 
   return WithFilm;

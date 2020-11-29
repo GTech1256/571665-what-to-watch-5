@@ -8,9 +8,11 @@ describe(`UserBlock is rendered correctly`, () => {
   it(`Authed`, () => {
     const tree = renderer
       .create(
-          <UserBlock
-            authorizationStatus={AuthorizationStatus.AUTH}
-          />
+          <MemoryRouter>
+            <UserBlock
+              authorizationStatus={AuthorizationStatus.AUTH}
+            />
+          </MemoryRouter>
       )
       .toJSON();
 

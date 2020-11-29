@@ -1,10 +1,15 @@
 import ActionType from "./action-type";
 import {extend} from "../../../utils/extend";
-import {FILMS_SHOWED_PER_STEP_COUNT, FIRST_FILTER_NAME} from "../../../const";
+import {
+  EMPTY_STATE_VALUE,
+  FILMS_SHOWED_PER_STEP_COUNT,
+  FIRST_FILTER_NAME
+} from "../../../const";
 
 const initialState = {
   showedFilmsCount: FILMS_SHOWED_PER_STEP_COUNT,
   activeFilterGenre: FIRST_FILTER_NAME,
+  errorMessage: EMPTY_STATE_VALUE
 };
 
 
@@ -23,6 +28,11 @@ export default (state = initialState, action) => {
     case ActionType.SET_ACTIVE_FILTER:
       return extend(state, {
         activeFilterGenre: action.payload
+      });
+
+    case ActionType.SET_ERROR_MESSAGE:
+      return extend(state, {
+        errorMessage: action.payload
       });
   }
 

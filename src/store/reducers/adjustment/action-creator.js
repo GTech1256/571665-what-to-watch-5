@@ -16,4 +16,9 @@ export default {
     type: ActionType.SET_ACTIVE_FILTER,
     payload: genre
   }),
+
+  setErrorMessage: (errorMessage) => ({
+    type: ActionType.SET_ERROR_MESSAGE,
+    payload: errorMessage
+  }),
 };

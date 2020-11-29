@@ -8,7 +8,7 @@ const initialState = {
   films: [],
   filters: [],
   comments: [], // комментарии у открытого фильма
-  // favoriteFilms: [],
+  favoriteFilms: EMPTY_STATE_VALUE,
 };
 
 export default (state = initialState, action) => {
@@ -38,20 +38,10 @@ export default (state = initialState, action) => {
         comments: action.payload
       });
 
-    // case ActionType.LOAD_FAVORITE_FILMS:
-    //   return extend(state, {
-    //     favoriteFilms: action.payload
-    //   });
-
-    // case ActionType.ADD_TO_FAVORITES:
-    //   return extend(state, {
-    //     favoriteFilms: [...state.favoriteFilms, action.payload]
-    //   });
-
-    // case ActionType.REMOVE_FROM_FAVORITES:
-    //   return extend(state, {
-    //     favoriteFilms: [...state.favoriteFilms].filter((it) => it.id !== action.payload.id)
-    //   });
+    case ActionType.LOAD_FAVORITE_FILMS:
+      return extend(state, {
+        favoriteFilms: action.payload
+      });
   }
 
   return state;

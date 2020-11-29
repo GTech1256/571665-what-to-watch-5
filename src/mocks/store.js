@@ -1,7 +1,7 @@
 
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {NameSpace} from "../store/reducers/root-reducer";
+import {NameSpace} from '../const';
 import film from './film';
 import films from './films';
 import review from './review';
@@ -28,7 +28,7 @@ export default mockStore({
     films,
     filters: [FIRST_FILTER_NAME, `Action`, `Comedy`],
     comments: [review],
-    favoriteFilms: films,
+    favoriteFilms: EMPTY_STATE_VALUE,
   },
   [NameSpace.USER]: {
     authorizationStatus: AuthorizationStatus.NO_AUTH,
